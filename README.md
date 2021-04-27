@@ -1,6 +1,6 @@
 ## Welcome to GitHub Pages
 
-- [Contributing](https://github.com/ossdhaval/gitcheck/blob/main/CONTRIBUTING.md)
+- [Contributing](CONTRIBUTING.md)
 
 You can use the [editor on GitHub](https://github.com/ossdhaval/gitcheck/edit/main/README.md) to maintain and preview the content for your website in Markdown files.
 
