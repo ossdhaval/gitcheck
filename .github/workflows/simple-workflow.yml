@@ -20,6 +20,7 @@ jobs:
         distribution: 'adopt'
     - name: Build with Maven
       run: mvn test jacoco:report
+
       # Runs a set of commands using the runners shell
       
     - name: Run a multi-line script
