@@ -8,8 +8,8 @@ public class StudentTest {
     @Test
     public void shouldReturnFullName(){
         Student st = new Student();
-        st.lastName = "desai";
-        st.firstName = "dhaval";
+        st.setLastName("desai");
+        st.setFirstName("dhaval");
 
         String expected = "dhaval desai";
         assertEquals(expected, st.getFullName());
