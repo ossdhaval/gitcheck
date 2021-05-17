@@ -25,5 +25,8 @@ jobs:
       
     - name: Run a multi-line script
       run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+          echo setup token
+          export CODACY_PROJECT_TOKEN=a9d3fdfb91534f119d608e1d8d54b40b
+          echo run upload command
+          bash <(curl -Ls https://coverage.codacy.com/get.sh) report -l Java $(find **/jacoco*.xml -printf '-r %p ')
+          echo report command execution complete
