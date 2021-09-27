@@ -9,6 +9,8 @@
     <packaging>pom</packaging>
     <name>parent-pom</name>
 
+         
+    <!-- just a comment -->
     <modules>
         <module>mod1</module>
         <module>mod2</module>
