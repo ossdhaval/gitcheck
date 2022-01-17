@@ -9,7 +9,7 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <!-- comment 1-->     
+    <!-- comment 2-->     
     
     <artifactId>mod1</artifactId>
     <packaging>jar</packaging>
