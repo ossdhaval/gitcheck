@@ -30,4 +30,6 @@ jobs:
           echo run upload command
           bash <(curl -Ls https://coverage.codacy.com/get.sh) report -l Java $(find **/jacoco*.xml -printf '-r %p ')
           echo report command execution complete
+          echo "${{ github.event.pull_request.base.sha }}"
+          echo "${{ github.sha }}"
           echo "::set-output name=all::$(git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }} | xargs)"
