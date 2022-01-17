@@ -32,4 +32,5 @@ jobs:
           echo report command execution complete
           echo "${{ github.event.pull_request.base.sha }}"
           echo "${{ github.sha }}"
+          echo "---------------------"
           echo "::set-output name=all::$(git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }} | xargs)"
