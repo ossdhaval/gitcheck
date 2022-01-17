@@ -35,4 +35,4 @@ jobs:
           echo "${{ github.event.pull_request.base.sha }}"
           echo "${{ github.sha }}"
           echo "--------------------"
-          echo "$(git diff --name-only --diff-filter=ACMRT --line-prefix=`git rev-parse --show-toplevel`/ ${{ github.event.pull_request.base.sha }} ${{ github.sha }} | cut -d/ -f1 | sort -u )"
+          echo "$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} | cut -d/ -f1 | sort -u )"
