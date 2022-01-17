@@ -35,4 +35,4 @@ jobs:
           echo "${{ github.event.pull_request.base.sha }}"
           echo "${{ github.sha }}"
           echo "--------------------"
-          echo "$(git diff --name-only --line-prefix=`git rev-parse --show-toplevel` --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }})"
+          echo "$(git diff --name-only --diff-filter=ACMRT --line-prefix=`git rev-parse --show-toplevel`/ ${{ github.event.pull_request.base.sha }} ${{ github.sha }}|xargs)"
