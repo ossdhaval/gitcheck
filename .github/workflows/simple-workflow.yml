@@ -37,13 +37,13 @@ jobs:
         module: [mod1, mod2]
     env:
       JVM_PROJECTS: |
-        JanssenProject/jans-auth-server
-        JanssenProject/jans-config-api
-        JanssenProject/jans-core
+        jans-auth-server
+        jans-config-api
+        jans-core
       NON_JVM_PROJECTS: |
-        JanssenProject/jans-setup
-        JanssenProject/jans-cli
-        JanssenProject/jans-cloud-native
+        jans-setup
+        jans-cli
+        jans-cloud-native
     steps:
       - name: check out code
         uses: actions/checkout@v2
@@ -57,7 +57,7 @@ jobs:
 
       - name: Set up JDK 11
         # JanssenProject/jans-cli is too similar to JanssenProject/jans-client-api as the contains function is returning it belonging to the JVM_PROJECT
-        if: contains(env.JVM_PROJECTS, github.repository) && github.repository != 'JanssenProject/jans-cli'
+        if: contains(env.JVM_PROJECTS, ${{ matrix.module }}) && ${{ matrix.module }} != 'jans-cli'
         uses: actions/setup-java@v2.5.0
         with:
           java-version: '11'
@@ -65,7 +65,7 @@ jobs:
           
       - name: Cache SonarCloud packages for JVM based project
         # JanssenProject/jans-cli is too similar to JanssenProject/jans-client-api as the contains function is returning it belonging to the JVM_PROJECT
-        if: contains(env.JVM_PROJECTS, github.repository) && github.repository != 'JanssenProject/jans-cli'
+        if: contains(env.JVM_PROJECTS, ${{ matrix.module }}) && ${{ matrix.module }} != 'jans-cli'
         uses: actions/cache@v2.1.7
         with:
           path: ~/.sonar/cache
@@ -75,19 +75,19 @@ jobs:
       - name: check env
         run: |
           echo ${{ env.CHANGED_DIR }}
-          echo ${{ env.JVM_PROJECTS }}
       
       - name: Build and analyze JVM based project
         # JanssenProject/jans-cli is too similar to JanssenProject/jans-client-api as the contains function is returning it belonging to the JVM_PROJECT
-        if: contains(env.JVM_PROJECTS, github.repository) && github.repository != 'JanssenProject/jans-cli'
+        if: contains(env.JVM_PROJECTS, ${{ matrix.module }}) && ${{ matrix.module }} != 'jans-cli'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
-          case "$GITHUB_REPOSITORY" in
-            "JanssenProject/jans-auth-server")
+          cd ${{ matrix.module }}
+          case "${{ matrix.module }}" in
+            "jans-auth-server")
                     ;&
-            "JanssenProject/jans-config-api")
+            "jans-config-api")
                   echo "Run Sonar analysis without test execution"
                   mvn -B -DskipTests=true install org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
                 ;;
@@ -106,12 +106,12 @@ jobs:
           echo "REPO_ORG=${REPO_OWNER,,}" >>${GITHUB_ENV}
 
       - name: SonarCloud Scan for non-JVM project
-        if: contains(env.NON_JVM_PROJECTS, github.repository)
+        if: contains(env.NON_JVM_PROJECTS, ${{ matrix.module }})
         uses: SonarSource/sonarcloud-github-action@master
         with:
           args: >
             -Dsonar.organization=${{ env.REPO_ORG }}
-            -Dsonar.projectKey=${{ github.repository_owner }}_${{ github.event.repository.name }}
+            -Dsonar.projectKey=${{ github.repository_owner }}_${{ matrix.module }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
