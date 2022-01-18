@@ -21,7 +21,7 @@ jobs:
       id: get-changed-modules
       run: |
         echo "::set-output name=changed-modules::$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} | cut -d/ -f1 | sort -u| sed -z 's/\n/,/g;s/^/[/;s/,$/]/')"
-        echo ${{ steps.get-changed-modules.outputs.changed-modules }}
+        echo "${{ steps.get-changed-modules.outputs.changed-modules }}"
 
   analyse-modules:
     runs-on: ubuntu-latest
