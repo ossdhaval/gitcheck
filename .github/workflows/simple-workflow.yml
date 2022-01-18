@@ -20,8 +20,8 @@ jobs:
     - name: create matrix
       id: get-changed-modules
       run: |
-        echo "::set-output name=changed-modules::$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} | cut -d/ -f1 | sort -u| sed -z 's/^/"/;s/\n/","/g;s/^/[/;s/,"$/]/;s/$/\n/')"
-        git diff --name-only ${{ github.event.before }} ${{ github.sha }} | cut -d/ -f1 | sort -u| sed -z 's/^/"/;s/\n/","/g;s/^/[/;s/,"$/]/;s/$/\n/'
+        echo "::set-output name=changed-modules::$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} | cut -d/ -f1 | sort -u| sed -z 's/\n/,/g;s/^/[/;s/,$/]/;s/$/\n/')"
+        git diff --name-only ${{ github.event.before }} ${{ github.sha }} | cut -d/ -f1 | sort -u| sed -z 's/\n/,/g;s/^/[/;s/,$/]/;s/$/\n/'
 
   analyse-modules:
     runs-on: ubuntu-latest
