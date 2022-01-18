@@ -37,11 +37,11 @@ jobs:
         module: [.github, jans-auth-server, jans-setup]
     env:
       JVM_PROJECTS: |
-        .github
         jans-auth-server
         jans-config-api
         jans-core
       NON_JVM_PROJECTS: |
+        .github
         jans-setup
         jans-cli
         jans-cloud-native
@@ -67,7 +67,7 @@ jobs:
           
       - name: Cache SonarCloud packages for JVM based project
         # JanssenProject/jans-cli is too similar to JanssenProject/jans-client-api as the contains function is returning it belonging to the JVM_PROJECT
-        if: contains(env.JVM_PROJECTS, matrix.module) && matrix.module != 'jans-cli'
+        if: contains(env.CHANGED_DIR, matrix.module) && contains(env.JVM_PROJECTS, matrix.module) && matrix.module != 'jans-cli'
         uses: actions/cache@v2.1.7
         with:
           path: ~/.sonar/cache
@@ -80,7 +80,7 @@ jobs:
       
       - name: Build and analyze JVM based project
         # JanssenProject/jans-cli is too similar to JanssenProject/jans-client-api as the contains function is returning it belonging to the JVM_PROJECT
-        if: contains(env.JVM_PROJECTS, matrix.module) && matrix.module != 'jans-cli'
+        if: contains(env.CHANGED_DIR, matrix.module) && contains(env.JVM_PROJECTS, matrix.module) && matrix.module != 'jans-cli'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
@@ -101,14 +101,14 @@ jobs:
 
 
       - name: Convert repo org name to lowercase for non JVM projects
-        if: contains(env.NON_JVM_PROJECTS, matrix.module)
+        if: contains(env.CHANGED_DIR, matrix.module) && contains(env.NON_JVM_PROJECTS, matrix.module)
         env:
           REPO_OWNER: ${{ github.repository_owner }}
         run: |
           echo "REPO_ORG=${REPO_OWNER,,}" >>${GITHUB_ENV}
 
       - name: SonarCloud Scan for non-JVM project
-        if: contains(env.NON_JVM_PROJECTS, matrix.module)
+        if: contains(env.CHANGED_DIR, matrix.module) && contains(env.NON_JVM_PROJECTS, matrix.module)
         uses: SonarSource/sonarcloud-github-action@master
         with:
           args: >
