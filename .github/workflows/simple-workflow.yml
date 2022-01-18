@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix: 
-        changed_modules: $(git diff --name-only ${{ github.event.before }} ${{ github.sha }} | cut -d/ -f1 | sort -u )
+        changed_modules: ${{ git diff --name-only ${{ github.event.before }} ${{ github.sha }} | cut -d/ -f1 | sort -u }}
 
     steps:
     - uses: actions/checkout@v2
