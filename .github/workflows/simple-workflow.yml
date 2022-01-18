@@ -34,7 +34,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix: 
-        module: [jans-auth-server, jans-setup]
+        module: [.github, jans-auth-server, jans-setup]
     env:
       JVM_PROJECTS: |
         jans-auth-server
@@ -58,7 +58,7 @@ jobs:
 
       - name: Set up JDK 11
         # JanssenProject/jans-cli is too similar to JanssenProject/jans-client-api as the contains function is returning it belonging to the JVM_PROJECT
-        if: contains(env.JVM_PROJECTS, matrix.module) && matrix.module != 'jans-cli'
+        if: contains(env.CHANGED_DIR, matrix.module) && contains(env.JVM_PROJECTS, matrix.module) && matrix.module != 'jans-cli'
         uses: actions/setup-java@v2.5.0
         with:
           java-version: '11'
