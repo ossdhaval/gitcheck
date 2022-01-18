@@ -34,7 +34,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix: 
-        module: [mod1, mod2]
+        module: [jans-auth-server, jans-setup]
     env:
       JVM_PROJECTS: |
         jans-auth-server
