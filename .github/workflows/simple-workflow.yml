@@ -28,7 +28,7 @@ jobs:
     needs: create-matrix
     strategy:
       matrix: 
-        changed_modules: [mod1,mod2]
+        changed_modules: ${{needs.create-matrix.outputs.matrix}}
 
     steps:
     - uses: actions/checkout@v2
