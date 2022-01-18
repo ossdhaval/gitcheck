@@ -37,6 +37,7 @@ jobs:
         module: [.github, jans-auth-server, jans-setup]
     env:
       JVM_PROJECTS: |
+        .github
         jans-auth-server
         jans-config-api
         jans-core
