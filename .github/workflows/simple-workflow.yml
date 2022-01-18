@@ -75,7 +75,7 @@ jobs:
       - name: check env
         run: |
           echo ${{ env.CHANGED_DIR }}
-          echo ${{ JVM_PROJECTS }}
+          echo ${{ env.JVM_PROJECTS }}
       
       - name: Build and analyze JVM based project
         # JanssenProject/jans-cli is too similar to JanssenProject/jans-client-api as the contains function is returning it belonging to the JVM_PROJECT
