@@ -2,9 +2,13 @@ name: code coverage
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
+
   pull_request:
-    branches: [ main ]
+    branches:
+      - main
+  workflow_dispatch:
 
 jobs:
   build:
@@ -15,13 +19,41 @@ jobs:
     - uses: actions/checkout@v2
       with:
         fetch-depth: 0
-    - name: Set up JDK 11
-      uses: actions/setup-java@v2
-      with:
-        java-version: '11'
-        distribution: 'adopt'
-    - name: Build with Maven
-      run: mvn -X clean test install jacoco:report
+#    - name: Set up JDK 11
+#      uses: actions/setup-java@v2
+#      with:
+#        java-version: '11'
+#        distribution: 'adopt'
+#    - name: Build with Maven
+#      run: mvn -X clean test install jacoco:report
+    
+    # check git environment variables
+    - name: Dump GitHub context
+      env:
+        GITHUB_CONTEXT: ${{ toJson(github) }}
+      run: echo "$GITHUB_CONTEXT"
+    
+    # detect changes
+    - name: find changed directories
+      run: |
+        if [ $GITHUB_BASE_REF ]; then
+          # Pull Request
+          echo "in pull request:"
+          echo $GITHUB_BASE_REF
+          git fetch origin $GITHUB_BASE_REF --depth=1
+          echo "CHANGED_DIR=$( git diff --name-only ${{ github.event.before }} ${{ github.event.pull_request.head.sha }}  | cut -d/ -f1 | sort -u | sed -z 's/\n/,/g;s/^/[/;s/,$/]/;s/$/\n/')" >> ${GITHUB_ENV}
+        else
+          # Push
+          echo "in push"
+          git fetch origin ${{ github.event.before }} --depth=1
+          echo "CHANGED_DIR=$( git diff --name-only ${{ github.event.before }} $GITHUB_SHA  | cut -d/ -f1 | sort -u | sed -z 's/\n/,/g;s/^/[/;s/,$/]/;s/$/\n/')" >> ${GITHUB_ENV}
+        fi
+        
+        echo ${{ env.CHANGED_DIR }}
+        echo ${{ matrix.module }}
+        echo ${{ github.event.before }}
+        echo ${{ github.event.pull_request.head.sha }}
+        echo $GITHUB_SHA
 
       # Runs a set of commands using the runners shell
       
