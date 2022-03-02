@@ -1,10 +1,3 @@
----
-name: Basic PR template
-about: This is a generic PR template 
-title: ''
-labels: ''
-assignees: ''
----
 
 ### Prepare
 
