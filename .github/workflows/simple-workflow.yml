@@ -60,7 +60,7 @@ jobs:
     - name: Run a multi-line script
       run: |
           echo ${{ env.CHANGED_DIR }}
-          echo setup tokenn
+          echo setup tokennn
           export CODACY_PROJECT_TOKEN=a9d3fdfb91534f119d608e1d8d54b40b
           echo run upload command
           bash <(curl -Ls https://coverage.codacy.com/get.sh) report -l Java $(find **/jacoco*.xml -printf '-r %p ')
