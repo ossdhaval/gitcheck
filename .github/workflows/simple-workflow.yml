@@ -59,7 +59,7 @@ jobs:
       
     - name: Run a multi-line script
       run: |
-          echo changed dir: $CHANGED_DIR
+          echo ${{ env.CHANGED_DIR }}
           echo setup token
           export CODACY_PROJECT_TOKEN=a9d3fdfb91534f119d608e1d8d54b40b
           echo run upload command
