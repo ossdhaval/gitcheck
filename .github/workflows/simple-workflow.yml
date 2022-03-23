@@ -55,7 +55,7 @@ jobs:
         echo github.event.before: ${{ github.event.before }}
         echo GITHUB_SHA: $GITHUB_SHA
 
-      # Runs a set of commands using the runners shell
+      # Runs a set of commands using the runners shelll
       
     - name: Run a multi-line script
       run: |
