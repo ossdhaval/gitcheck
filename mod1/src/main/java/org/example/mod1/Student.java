@@ -5,7 +5,7 @@ public class Student{
     String firstName;
     String lastName;
 
-//    just comment
+//    just comments
     public String getFullName()
     {
         return firstName+" "+lastName;
