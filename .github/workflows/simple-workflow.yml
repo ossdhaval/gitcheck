@@ -62,6 +62,7 @@ jobs:
           echo ${{ env.CHANGED_DIR }}
           echo "${{ github.event.pull_request.base.sha }}"
           echo "${{ github.event.inputs.version }}"
+          pwd
 
 #          echo setup token
 #          export CODACY_PROJECT_TOKEN=a9d3fdfb91534f119d608e1d8d54b40b
