@@ -64,6 +64,7 @@ jobs:
           echo "${{ github.event.inputs.version }}"
           pwd
           ls -l
+          mvn compile
           
 
 #          echo setup token
