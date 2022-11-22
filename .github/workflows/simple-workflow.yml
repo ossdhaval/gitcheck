@@ -60,12 +60,15 @@ jobs:
     - name: Run a multi-line script
       run: |
           echo ${{ env.CHANGED_DIR }}
-          echo setup token
-          export CODACY_PROJECT_TOKEN=a9d3fdfb91534f119d608e1d8d54b40b
-          echo run upload command
-          bash <(curl -Ls https://coverage.codacy.com/get.sh) report -l Java $(find **/jacoco*.xml -printf '-r %p ')
-          echo report command execution complete
           echo "${{ github.event.pull_request.base.sha }}"
-          echo "${{ github.sha }}"
-          echo "--------------------"
-          echo "$(git diff --name-only --diff-filter=ACMRT --line-prefix=`git rev-parse --show-toplevel`/ ${{ github.event.pull_request.base.sha }} ${{ github.sha }}|xargs)"
+          echo "${{ github.event.inputs.version }}"
+
+#          echo setup token
+#          export CODACY_PROJECT_TOKEN=a9d3fdfb91534f119d608e1d8d54b40b
+#          echo run upload command
+#          bash <(curl -Ls https://coverage.codacy.com/get.sh) report -l Java $(find **/jacoco*.xml -printf '-r %p ')
+#          echo report command execution complete
+#
+#          echo "${{ github.sha }}"
+#          echo "--------------------"
+#          echo "$(git diff --name-only --diff-filter=ACMRT --line-prefix=`git rev-parse --show-toplevel`/ ${{ github.event.pull_request.base.sha }} ${{ github.sha }}|xargs)"
