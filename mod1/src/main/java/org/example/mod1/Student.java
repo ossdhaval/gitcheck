@@ -2,7 +2,10 @@ package org.example.mod1;
 
 public class Student{
 
-    String firstName;
+    /**
+     * this is Javadoc
+     */
+    public String firstName;
     String lastName;
 
 //    just comments - by some other author
