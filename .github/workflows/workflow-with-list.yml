@@ -25,8 +25,10 @@ jobs:
           pwd
           echo $JVM_PROJECTS
           COLORS="red green blue"
-          for COLOR in $COLORS
+          for module in $JVM_PROJECTS
           do
-            echo "COLOR: $COLOR"
+            echo "Module: $moodule"
+            echo "=============="
+            mvn -f $module/pom.xml compile
           done
-          mvn compile
+          # mvn compile
