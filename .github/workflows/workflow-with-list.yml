@@ -27,5 +27,6 @@ jobs:
         run: |
           pwd
           pwd
-          ls .
-          mvn -f ./mod1/pom.xml compile
+          echo $JVM_PROJECTS
+          echo ls .
+          mvn compile
