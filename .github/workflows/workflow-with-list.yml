@@ -12,6 +12,9 @@ jobs:
     name: job-1
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
       - name: print all
         env:
           JVM_PROJECTS: |
@@ -28,5 +31,5 @@ jobs:
           pwd
           pwd
           echo $JVM_PROJECTS
-          echo "$(ls)"
+          ls
           mvn compile
