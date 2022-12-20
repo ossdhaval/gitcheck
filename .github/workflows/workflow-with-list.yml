@@ -28,5 +28,5 @@ jobs:
           pwd
           pwd
           echo $JVM_PROJECTS
-          echo ls .
+          echo "$(ls)"
           mvn compile
