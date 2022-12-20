@@ -29,6 +29,6 @@ jobs:
           do
             echo "Module: $moodule"
             echo "=============="
-            mvn -f $module/pom.xml compile
+            mvn -f $module/pom.xml clean
           done
           # mvn compile
