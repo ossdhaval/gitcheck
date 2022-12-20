@@ -1,0 +1,28 @@
+name: workflow with list
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+jobs:
+  job-1:
+    name: job-1
+    runs-on: ubuntu-latest
+    steps:
+      - name: print all
+        env:
+          JVM_PROJECTS: |
+            jans-auth-server
+            jans-orm
+            jans-config-api
+            jans-scim
+            jans-core
+            jans-notify
+            jans-fido2
+            jans-eleven
+            agama
+        run: |
+          echo pwd
