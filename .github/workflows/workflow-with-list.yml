@@ -24,11 +24,11 @@ jobs:
           pwd
           pwd
           echo $JVM_PROJECTS
-          COLORS="red green blue"
           for module in $JVM_PROJECTS
           do
-            echo "Module: $moodule"
+            echo "Module: $module"
             echo "=============="
-            mvn -f $module/pom.xml clean
+            mvn -f $module/pom.xml javadoc:javadoc
+            ls @module/target/site/apidocs/
           done
           # mvn compile
