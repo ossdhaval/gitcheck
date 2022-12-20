@@ -18,18 +18,15 @@ jobs:
       - name: print all
         env:
           JVM_PROJECTS: |
-            jans-auth-server
-            jans-orm
-            jans-config-api
-            jans-scim
-            jans-core
-            jans-notify
-            jans-fido2
-            jans-eleven
-            agama
+            mod1
+            mod2
         run: |
           pwd
           pwd
           echo $JVM_PROJECTS
-          ls
+          COLORS="red green blue"
+          for COLOR in $COLORS
+          do
+            echo "COLOR: $COLOR"
+          done
           mvn compile
