@@ -29,6 +29,6 @@ jobs:
             echo "Module: $module"
             echo "=============="
             mvn -f $module/pom.xml javadoc:javadoc
-            ls @module/target/site/apidocs/
+            ls $module/target/site/apidocs/
           done
           # mvn compile
