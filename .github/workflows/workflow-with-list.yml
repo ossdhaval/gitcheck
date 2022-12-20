@@ -25,5 +25,7 @@ jobs:
             jans-eleven
             agama
         run: |
+          pwd
+          pwd
           ls .
           mvn -f ./mod1/pom.xml compile
