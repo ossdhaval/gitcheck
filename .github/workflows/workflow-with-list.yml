@@ -27,7 +27,7 @@ jobs:
           do
             echo "Module: $module"
             echo "=============="
-            mvn -f $module/pom.xml javadoc:javadoc
+            mvn -f $module/pom.xml clean
             ls $module/target/site/apidocs/
           done
           
