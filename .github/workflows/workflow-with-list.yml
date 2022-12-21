@@ -25,7 +25,7 @@ jobs:
           for module in $JVM_PROJECTS
            do
              echo "Generating javadocs for module: $module and all it's sub-modules"
-             #mvn -f $module/pom.xml javadoc:javadoc
+             mvn -f $module/pom.xml javadoc:javadoc
           
              echo "Move generated javadocs from all sub-modules to respective doc site location"
           
