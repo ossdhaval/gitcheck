@@ -30,7 +30,7 @@ jobs:
              echo "Move generated javadocs from all sub-modules to respective doc site location"
           
              echo "getting all sub-module names"
-             generated-doc-paths=($(find $module -type d  -path '*/target/site/apidocs' | sed -r 's|/[^/]+$||' | sed -r 's|/[^/]+$||' | sed -r 's|/[^/]+$|3|'))
+             generated-doc-paths=($( find $module -type d  -path '*/target/site/apidocs' | sed -r 's|/[^/]+$||' | sed -r 's|/[^/]+$||' | sed -r 's|/[^/]+$|3|'))
           
              echo "Loop through sub-modules and move javadocs"
              for source-path in "${generated-doc-paths[@]}"
