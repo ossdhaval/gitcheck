@@ -22,7 +22,7 @@ jobs:
             mod2
         run: |
           pwd
-                    for module in $JVM_PROJECTS
+           for module in $JVM_PROJECTS
            do
              echo "Generating javadocs for module: $module and all it's sub-modules"
              mvn -f $module/pom.xml javadoc:javadoc
