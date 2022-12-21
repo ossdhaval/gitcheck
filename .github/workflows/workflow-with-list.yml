@@ -23,7 +23,7 @@ jobs:
         run: |
           pwd
           sub_modules=($( mvn help:evaluate -Dexpression=project.modules -q -DforceStdout | tail -n +2 | head -n -1 | sed 's/\s*<.*>\(.*\)<.*>/\1/'))
-          for module in $sub-modules
+          for module in $sub_modules
           do
             echo "Module: $module"
             echo "=============="
