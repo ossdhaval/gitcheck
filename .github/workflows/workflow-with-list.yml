@@ -21,6 +21,6 @@ jobs:
             mod1
             mod2
         run: |
-          sudo bash ./automation/javadoc-script.sh
+          sudo . ./automation/javadoc-script.sh
           
           # mvn compile
