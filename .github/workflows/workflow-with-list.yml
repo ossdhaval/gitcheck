@@ -28,7 +28,8 @@ jobs:
             echo "Module: $module"
             echo "=============="
             mvn -f $module/pom.xml clean
-            ls $module/target/site/apidocs/
+            echo "=============================================================="
+            #ls $module/target/site/apidocs/
           done
           
           # mvn compile
