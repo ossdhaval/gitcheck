@@ -1,6 +1,7 @@
 #!/bin/bash
 
 pwd
+echo $JVM_PROJECTS
  for module in $JVM_PROJECTS
  do
    echo "Generating javadocs for module: $module and all it's sub-modules"
