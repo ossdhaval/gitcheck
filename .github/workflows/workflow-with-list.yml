@@ -22,13 +22,15 @@ jobs:
             mod2
         run: |
           pwd
-          pwd
-          echo $JVM_PROJECTS
-          for module in $JVM_PROJECTS
+
+          
+          sub-modules=( $( mvn help:evaluate -Dexpression=project.modules -q -DforceStdout | tail -n +2 | head -n -1 | sed 's/\s*<.*>\(.*\)<.*>/\1/') )
+          for module in $sub-modules
           do
             echo "Module: $module"
             echo "=============="
             mvn -f $module/pom.xml javadoc:javadoc
             ls $module/target/site/apidocs/
           done
+          
           # mvn compile
