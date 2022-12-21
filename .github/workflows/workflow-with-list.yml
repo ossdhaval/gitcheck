@@ -30,8 +30,8 @@ jobs:
              echo "Move generated javadocs from all sub-modules to respective doc site location"
           
              echo "getting all sub-module names"
-             readarray -d '' generated-doc-paths < <(find mod1 -type d  -path '*/target/site/apidocs' | sed -r 's|/[^/]+$||' | sed -r 's|/[^/]+$||' | sed -r 's|/[^/]+$||')
-             #generated-doc-paths=($( find mod1 -type d  -path '*/target/site/apidocs' | sed -r 's|/[^/]+$||' | sed -r 's|/[^/]+$||' | sed -r 's|/[^/]+$||'))
+             #readarray -d '' generated-doc-paths < <(find mod1 -type d  -path '*/target/site/apidocs' | sed -r 's|/[^/]+$||' | sed -r 's|/[^/]+$||' | sed -r 's|/[^/]+$||')
+             generated-doc-paths=( $( find mod1 -type d  -path '*/target/site/apidocs' | sed -r 's|/[^/]+$||' | sed -r 's|/[^/]+$||' | sed -r 's|/[^/]+$||'))
              #find mod1 -type d  -path '*/target/site/apidocs' | sed -r 's|/[^/]+$||' | sed -r 's|/[^/]+$||' | sed -r 's|/[^/]+$||'
           
              echo "Loop through sub-modules and move javadocs"
