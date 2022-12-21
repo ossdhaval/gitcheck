@@ -1,3 +1,5 @@
+#!/bin/bash
+
 pwd
  for module in $JVM_PROJECTS
  do
