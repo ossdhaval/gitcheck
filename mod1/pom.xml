@@ -10,7 +10,10 @@
     </parent>
 
     <artifactId>mod1</artifactId>
-    <packaging>jar</packaging>
+    <packaging>pom</packaging>
     <name>mod1</name>
+    <modules>
+        <module>submod1</module>
+    </modules>
 
 </project>
